@@ -71,4 +71,11 @@ public class ExplorerTest {
 
         assertTrue(current);
     }
+
+    @Test
+    public void given_a_name_when_creating_a_directory_then_ok() {
+        boolean current = e.createDirectory("new");
+        assertTrue(current);
+        e.deleteFileByName("new");
+    }
 }

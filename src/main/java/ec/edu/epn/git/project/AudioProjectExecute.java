@@ -48,6 +48,12 @@ public class AudioProjectExecute {
                 System.out.println("\tThe file was renamed successfully");
             }
 
+            System.out.println("\nThe directories creation process has started:");
+            success = explorer.createDirectory("new");
+            explorer.deleteFileByName("new");
+            if (success){
+                System.out.println("\tThe directory was created successfully");
+            }
 
         }catch (Exception e){}
 

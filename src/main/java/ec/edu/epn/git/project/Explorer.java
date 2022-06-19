@@ -130,4 +130,9 @@ public class Explorer {
         File newFile = new File(directory + "\\" + newName);
         return oldFile.renameTo(newFile);
     }
+
+    public boolean createDirectory(String directoryName) {
+        File newDirectory = new File(directory + "\\" + directoryName);
+        return newDirectory.mkdirs();
+    }
 }
