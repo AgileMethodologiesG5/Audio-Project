@@ -9,14 +9,20 @@ public class AudioProjectExecute {
         for (String nameFile : listFiles) {
             System.out.println("\t" + nameFile);
         }
-        System.out.println();
 
         String source = String.valueOf(explorer.directory);
         String dest = String.valueOf(explorer.directory.resolve("converterOut"));
-        System.out.println("The moving file process has started:");
+        System.out.println("\nThe moving file process has started:");
         explorer.moveFile("movingFile.txt",source, dest);
         System.out.println("\tThe file has been moved: " + source + " --> " + dest);
         explorer.moveFile("movingFile.txt",dest, source);
         System.out.println("\tThe file has been moved: " + dest + " --> " + source);
+
+        System.out.println("\nChecking the playing process and the audio compatibility:");
+        explorer.setAudioFileByName("cheer.wav");
+        boolean compatibility = explorer.playAudioFile();
+        if (compatibility) {
+            System.out.println("\tThe file is compatible");
+        }
     }
 }

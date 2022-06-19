@@ -1,5 +1,7 @@
 package ec.edu.epn.git.project;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,11 +10,16 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Explorer {
 
     Path directory;                                                 // Targeted directory of the explorer
     ArrayList<Exception> exceptionArrayList = new ArrayList<>();    // Array to save the occurred exceptions
+    AudioPlayer audioPlayer = new AudioPlayer();                    // Audio player linked with the explorer
+    File audioFile = null;                                                  // Targeted audio file of the explorer
     public Explorer() {
         String stringDirectory = System.getProperty("user.dir");
         Path mainPath = Path.of(stringDirectory);
@@ -68,5 +75,35 @@ public class Explorer {
             }
         }
         return false;
+    }
+
+    public boolean playAudioFile() {
+        boolean compatibility;
+        try {
+            compatibility = audioPlayer.playAudioFile(audioFile);
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException | InterruptedException e) {
+            exceptionArrayList.add(e);
+            return false;
+        }
+        return compatibility;
+    }
+
+    public File setAudioFileByName(String fileName) {
+        if (checkPath(directory.resolve(fileName))) {
+            List<Path> filesList;
+
+            // Searching the file through layers of filters
+            try (Stream<Path> walk = Files.walk(directory)) {
+                Stream<Path> firstFilter = walk.filter(Files::isRegularFile);
+                Stream<Path> secondFilter = firstFilter.filter(p -> p.getFileName().toString().equalsIgnoreCase(fileName));
+                filesList = secondFilter.collect(Collectors.toList());
+            } catch (IOException e) {
+                exceptionArrayList.add(e);
+                return null;
+            }
+
+            return audioFile = new File(String.valueOf(filesList.get(0)));
+        }
+        return null;
     }
 }
