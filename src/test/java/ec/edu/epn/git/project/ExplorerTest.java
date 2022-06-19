@@ -63,4 +63,12 @@ public class ExplorerTest {
 
         assertTrue(current);
     }
+
+    @Test
+    public void given_a_file_name_string_when_renaming_then_ok() {
+        e.renameFile("arc1.wav","arc2.wav");
+        boolean current = e.renameFile("arc2.wav","arc1.wav");
+
+        assertTrue(current);
+    }
 }

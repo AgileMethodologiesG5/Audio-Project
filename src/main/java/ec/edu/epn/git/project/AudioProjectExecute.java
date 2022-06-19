@@ -41,6 +41,13 @@ public class AudioProjectExecute {
                 System.out.println("\tThe file was deleted successfully");
             }
 
+            System.out.println("\nThe rename process has started:");
+            explorer.renameFile("arc1.wav","arc2.wav");
+            success = explorer.renameFile("arc2.wav","arc1.wav");
+            if (success){
+                System.out.println("\tThe file was renamed successfully");
+            }
+
 
         }catch (Exception e){}
 

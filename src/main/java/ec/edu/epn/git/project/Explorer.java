@@ -124,4 +124,10 @@ public class Explorer {
         // Checking if the deletion was approved
         return fileToDelete.delete();
     }
+
+    public boolean renameFile(String oldName, String newName) {
+        File oldFile = new File(directory + "\\" + oldName);
+        File newFile = new File(directory + "\\" + newName);
+        return oldFile.renameTo(newFile);
+    }
 }
