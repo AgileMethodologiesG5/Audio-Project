@@ -58,6 +58,9 @@ public class AudioProjectExecute {
             System.out.println("\nThe metadata getting/showing process has started:");
             System.out.println(explorer.getMetadata("arc1.wav"));
 
+            System.out.println("\nThe properties getting/showing process has started:");
+            System.out.println(explorer.getProperties("arc1.wav"));
+
         }catch (Exception e){}
 
     }

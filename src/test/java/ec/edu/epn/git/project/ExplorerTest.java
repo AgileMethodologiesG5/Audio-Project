@@ -83,4 +83,9 @@ public class ExplorerTest {
     public void given_a_file_name_when_showing_metadata_then_ok() {
         assertNotNull(e.getMetadata("arc1.wav"));
     }
+
+    @Test
+    public void given_a_file_name_when_showing_properties_then_ok() {
+        assertNotNull(e.getProperties("arc1wav"));
+    }
 }

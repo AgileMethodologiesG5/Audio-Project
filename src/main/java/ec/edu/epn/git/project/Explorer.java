@@ -147,4 +147,17 @@ public class Explorer {
         }
         return "The file does not exists";
     }
+
+    public String getProperties(String fileName){
+        if (checkPath(directory.resolve(fileName))){
+            File file = new File(directory + "\\" + fileName);
+            try {
+                return audioPlayer.getProperties(file);
+            } catch (UnsupportedAudioFileException | IOException e) {
+                exceptionArrayList.add(e);
+                return e.getMessage();
+            }
+        }
+        return "The file does not exists";
+    }
 }

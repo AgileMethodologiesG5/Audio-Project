@@ -53,4 +53,23 @@ public class AudioPlayer {
         return false;
     }
 
+    public String getProperties(File audioFile) throws UnsupportedAudioFileException, IOException {
+        if (checkCompatibility(audioFile)) {
+            AudioInputStream stream = AudioSystem.getAudioInputStream(audioFile);
+            AudioFormat format = stream.getFormat();
+            int frameLength = (int) stream.getFrameLength();
+            int frameSize = format.getFrameSize();
+            int bufferSize = (frameLength * frameSize);
+            return "-- PROPERTIES --" +
+                    "\nName: " + audioFile.getName() +
+                    "\nFormat: " + format +
+                    "\nDuration: " + (stream.getFrameLength() + 0.0) / format.getFrameRate() + "s" +
+                    "\nFrame Length: " + frameLength +
+                    "\nFrame Size: " + frameSize +
+                    "\nBuffer Size" + bufferSize
+                    ;
+        }
+        return null;
+    }
+
 }
