@@ -21,10 +21,17 @@ public class AudioProjectExecute {
 
             System.out.println("\nChecking the playing process and the audio compatibility:");
             explorer.setAudioFileByName("cheer.wav");
+            /*
             boolean compatibility = explorer.playAudioFile();
             if (compatibility) {
                 System.out.println("\tThe file is compatible");
             }
+             */
+
+            System.out.println("\nThe conversion process has started");
+            explorer.convertAudioFile(Format.AU);
+
+
         }catch (Exception e){}
 
     }

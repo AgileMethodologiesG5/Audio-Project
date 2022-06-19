@@ -16,10 +16,11 @@ import java.util.stream.Stream;
 
 public class Explorer {
 
-    Path directory;                                                 // Targeted directory of the explorer
-    ArrayList<Exception> exceptionArrayList = new ArrayList<>();    // Array to save the occurred exceptions
-    AudioPlayer audioPlayer = new AudioPlayer();                    // Audio player linked with the explorer
+    Path directory;                                                         // Targeted directory of the explorer
+    ArrayList<Exception> exceptionArrayList = new ArrayList<>();            // Array to save the occurred exceptions
+    AudioPlayer audioPlayer = new AudioPlayer();                            // Audio player linked with the explorer
     File audioFile = null;                                                  // Targeted audio file of the explorer
+    Converter converter = new Converter();                                  // Audio converter linked with the explorer
     public Explorer() {
         String stringDirectory = System.getProperty("user.dir");
         Path mainPath = Path.of(stringDirectory);
@@ -105,5 +106,9 @@ public class Explorer {
             return audioFile = new File(String.valueOf(filesList.get(0)));
         }
         return null;
+    }
+
+    public void convertAudioFile(Format format) throws UnsupportedAudioFileException, IOException {
+        converter.convertAudioFile(audioFile, format);
     }
 }

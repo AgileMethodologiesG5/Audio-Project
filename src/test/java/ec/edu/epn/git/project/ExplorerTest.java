@@ -3,11 +3,15 @@ package ec.edu.epn.git.project;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
+
 import static org.junit.Assert.*;
 
 public class ExplorerTest {
 
     Explorer e;
+
     @Before
     public void starUp() {
         e = new Explorer();
@@ -15,7 +19,7 @@ public class ExplorerTest {
 
     @Test
     public void given_a_directory_when_returning_the_files_list_then_ok() {
-        String[] expected = {"arc1.aiff", "arc1.au", "arc1.wav", "cheer.wav", "converterOut", "movingFile.txt", "nature.wav" };
+        String[] expected = {"arc1.aiff", "arc1.au", "arc1.wav", "cheer.wav", "converterOut", "house_lo.mp3", "movingFile.txt", "nature.wav"};
         String[] current = e.getFilesList();
 
         assertArrayEquals(expected, current);
@@ -40,5 +44,13 @@ public class ExplorerTest {
         boolean current = e.playAudioFile();
 
         assertTrue(current);
+    }
+
+    @Test
+    public void given_the_file_when_converting_then_ok() {
+        File currentFile = e.setAudioFileByName("house_lo.mp3");
+        Format current = Format.WAV;
+        assertThrows(UnsupportedAudioFileException.class, () -> e.convertAudioFile(current));
+
     }
 }
