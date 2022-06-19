@@ -135,4 +135,16 @@ public class Explorer {
         File newDirectory = new File(directory + "\\" + directoryName);
         return newDirectory.mkdirs();
     }
+
+    public String getMetadata(String fileName) {
+        if (checkPath(directory.resolve(fileName))){
+            File file = new File(fileName);
+            return "-- FILE DETAILS --" +
+                    "\nName: " + fileName +
+                    "\nPath: " + file.getAbsolutePath() +
+                    "\nSize: " + file.length()
+                    ;
+        }
+        return "The file does not exists";
+    }
 }

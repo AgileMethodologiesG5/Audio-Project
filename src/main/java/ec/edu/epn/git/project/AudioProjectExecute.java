@@ -55,6 +55,9 @@ public class AudioProjectExecute {
                 System.out.println("\tThe directory was created successfully");
             }
 
+            System.out.println("\nThe metadata getting/showing process has started:");
+            System.out.println(explorer.getMetadata("arc1.wav"));
+
         }catch (Exception e){}
 
     }

@@ -78,4 +78,9 @@ public class ExplorerTest {
         assertTrue(current);
         e.deleteFileByName("new");
     }
+
+    @Test
+    public void given_a_file_name_when_showing_metadata_then_ok() {
+        assertNotNull(e.getMetadata("arc1.wav"));
+    }
 }
