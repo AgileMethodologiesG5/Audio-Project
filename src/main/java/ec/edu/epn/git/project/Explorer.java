@@ -111,4 +111,17 @@ public class Explorer {
     public void convertAudioFile(Format format) throws UnsupportedAudioFileException, IOException {
         converter.convertAudioFile(audioFile, format);
     }
+
+    public boolean deleteFileByName(String name)  {
+        if (!checkPath(directory.resolve(name))) {
+            System.out.println("The file \"" + name +
+                    "\" does not exists in the directory \"" + directory + "\"");
+            return false;
+        }
+
+        File fileToDelete = new File(directory + "\\" + name);
+
+        // Checking if the deletion was approved
+        return fileToDelete.delete();
+    }
 }

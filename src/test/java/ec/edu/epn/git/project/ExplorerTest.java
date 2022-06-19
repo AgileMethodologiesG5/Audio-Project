@@ -53,4 +53,14 @@ public class ExplorerTest {
         assertThrows(UnsupportedAudioFileException.class, () -> e.convertAudioFile(current));
 
     }
+
+    @Test
+    public void given_the_name_of_a_file_when_deleting_then_ok() {
+        String src = String.valueOf(e.directory.resolve("converterOut"));
+        String dest = String.valueOf(e.directory);
+        e.moveFile("AUcheer.au",src,dest);
+        boolean current = e.deleteFileByName("AUcheer.au");
+
+        assertTrue(current);
+    }
 }

@@ -11,13 +11,13 @@ public class AudioProjectExecute {
                 System.out.println("\t" + nameFile);
             }
 
-            String source = String.valueOf(explorer.directory);
+            String src = String.valueOf(explorer.directory);
             String dest = String.valueOf(explorer.directory.resolve("converterOut"));
             System.out.println("\nThe moving file process has started:");
-            explorer.moveFile("movingFile.txt",source, dest);
-            System.out.println("\tThe file has been moved: " + source + " --> " + dest);
-            explorer.moveFile("movingFile.txt",dest, source);
-            System.out.println("\tThe file has been moved: " + dest + " --> " + source);
+            explorer.moveFile("movingFile.txt",src, dest);
+            System.out.println("\tThe file has been moved: " + src + " --> " + dest);
+            explorer.moveFile("movingFile.txt",dest, src);
+            System.out.println("\tThe file has been moved: " + dest + " --> " + src);
 
             System.out.println("\nChecking the playing process and the audio compatibility:");
             explorer.setAudioFileByName("cheer.wav");
@@ -28,8 +28,18 @@ public class AudioProjectExecute {
             }
              */
 
-            System.out.println("\nThe conversion process has started");
+            System.out.println("\nThe conversion process has started:");
             explorer.convertAudioFile(Format.AU);
+
+
+            System.out.println("\nThe deletion process has started:");
+            src = String.valueOf(explorer.directory.resolve("converterOut"));
+            dest = String.valueOf(explorer.directory);
+            explorer.moveFile("AUcheer.au",src,dest);
+            boolean success = explorer.deleteFileByName("AUcheer.au");
+            if (success){
+                System.out.println("\tThe file was deleted successfully");
+            }
 
 
         }catch (Exception e){}
