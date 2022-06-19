@@ -20,4 +20,17 @@ public class ExplorerTest {
 
         assertArrayEquals(expected, current);
     }
+
+    @Test
+    public void given_a_file_name_string_and_two_paths_strings_when_moving_file_then_ok() {
+
+        boolean expected = true;
+        boolean current = e.moveFile(
+                "movingFile.txt",
+                String.valueOf(e.directory),
+                String.valueOf(e.directory.resolve("converterOut"))
+        );
+
+        assertEquals(expected, current);
+    }
 }
