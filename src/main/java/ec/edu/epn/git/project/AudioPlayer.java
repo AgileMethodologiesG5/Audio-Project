@@ -61,6 +61,14 @@ public class AudioPlayer {
         return this.msPosition;
     }
 
+    public long stopAudioFile(){
+        if (this.clip != null){
+            this.msPosition = 0;
+            this.clip.stop();
+        }
+        return this.msPosition;
+    }
+
     public String getProperties(File audioFile) throws UnsupportedAudioFileException, IOException {
         if (checkCompatibility(audioFile)) {
             AudioInputStream stream = AudioSystem.getAudioInputStream(audioFile);

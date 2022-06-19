@@ -21,6 +21,7 @@ public class Explorer {
     AudioPlayer audioPlayer = new AudioPlayer();                            // Audio player linked with the explorer
     File audioFile = null;                                                  // Targeted audio file of the explorer
     Converter converter = new Converter();                                  // Audio converter linked with the explorer
+
     public Explorer() {
         String stringDirectory = System.getProperty("user.dir");
         Path mainPath = Path.of(stringDirectory);
@@ -35,6 +36,7 @@ public class Explorer {
     private boolean checkPath(Path path) {
         return Files.exists(path);
     }
+
     public String[] getFilesList() {
         // Local variables
         File directoryFile = new File(String.valueOf(directory));
@@ -112,7 +114,7 @@ public class Explorer {
         converter.convertAudioFile(audioFile, format);
     }
 
-    public boolean deleteFileByName(String name)  {
+    public boolean deleteFileByName(String name) {
         if (!checkPath(directory.resolve(name))) {
             System.out.println("The file \"" + name +
                     "\" does not exists in the directory \"" + directory + "\"");
@@ -137,7 +139,7 @@ public class Explorer {
     }
 
     public String getMetadata(String fileName) {
-        if (checkPath(directory.resolve(fileName))){
+        if (checkPath(directory.resolve(fileName))) {
             File file = new File(fileName);
             return "-- FILE DETAILS --" +
                     "\nName: " + fileName +
@@ -148,8 +150,8 @@ public class Explorer {
         return "The file does not exists";
     }
 
-    public String getProperties(String fileName){
-        if (checkPath(directory.resolve(fileName))){
+    public String getProperties(String fileName) {
+        if (checkPath(directory.resolve(fileName))) {
             File file = new File(String.valueOf(directory.resolve(fileName)));
             try {
                 return audioPlayer.getProperties(file);
@@ -161,7 +163,11 @@ public class Explorer {
         return "The file does not exists";
     }
 
-    public long pauseAudioFile(){
+    public long pauseAudioFile() {
         return audioPlayer.pauseAudioFile();
+    }
+
+    public long stopAudioFile() {
+        return audioPlayer.stopAudioFile();
     }
 }

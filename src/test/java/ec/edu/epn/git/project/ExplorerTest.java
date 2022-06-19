@@ -95,4 +95,11 @@ public class ExplorerTest {
         e.playAudioFile();
         assertEquals(0, e.pauseAudioFile()*10000);
     }
+
+    @Test
+    public void given_a_file_reproduction_when_use_stop_then_ok() {
+        e.setAudioFileByName("nature.wav");
+        e.playAudioFile();
+        assertEquals(0, e.pauseAudioFile()*10000);
+    }
 }

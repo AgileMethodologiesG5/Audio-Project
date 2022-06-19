@@ -61,9 +61,13 @@ public class AudioProjectExecute {
             System.out.println("\nThe properties getting/showing process has started:");
             System.out.println(explorer.getProperties("arc1.wav"));
 
-            System.out.println("\tThe pausing process has started:");
+            System.out.println("\nThe pausing process has started:");
             explorer.playAudioFile();
             System.out.println("\tms pointer: "+explorer.pauseAudioFile());
+
+            System.out.println("\nThe stopping process has started:");
+            explorer.playAudioFile();
+            System.out.println("\tms pointer: "+ explorer.stopAudioFile());
 
         }catch (Exception e){}
 
