@@ -150,7 +150,7 @@ public class Explorer {
 
     public String getProperties(String fileName){
         if (checkPath(directory.resolve(fileName))){
-            File file = new File(directory + "\\" + fileName);
+            File file = new File(String.valueOf(directory.resolve(fileName)));
             try {
                 return audioPlayer.getProperties(file);
             } catch (UnsupportedAudioFileException | IOException e) {
@@ -159,5 +159,9 @@ public class Explorer {
             }
         }
         return "The file does not exists";
+    }
+
+    public long pauseAudioFile(){
+        return audioPlayer.pauseAudioFile();
     }
 }

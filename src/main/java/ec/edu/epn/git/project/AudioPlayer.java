@@ -53,6 +53,14 @@ public class AudioPlayer {
         return false;
     }
 
+    public long pauseAudioFile(){
+        if (this.clip != null){
+            this.msPosition = this.clip.getMicrosecondPosition();
+            clip.stop();
+        }
+        return this.msPosition;
+    }
+
     public String getProperties(File audioFile) throws UnsupportedAudioFileException, IOException {
         if (checkCompatibility(audioFile)) {
             AudioInputStream stream = AudioSystem.getAudioInputStream(audioFile);

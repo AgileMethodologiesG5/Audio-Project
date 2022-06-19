@@ -88,4 +88,11 @@ public class ExplorerTest {
     public void given_a_file_name_when_showing_properties_then_ok() {
         assertNotNull(e.getProperties("arc1wav"));
     }
+
+    @Test
+    public void given_a_file_reproduction_when_use_pause_then_ok() {
+        e.setAudioFileByName("nature.wav");
+        e.playAudioFile();
+        assertEquals(0, e.pauseAudioFile()*10000);
+    }
 }
